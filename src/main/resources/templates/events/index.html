@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charser="UTF-8"/>
-    <title>Coding Events</title>
-    <link rel="stylesheet" th:href="styles.css">
-</head>
-<body>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
 
-<h1>All Events</h1>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Address</th>
-    </tr>
+<header th:replace="fragments :: header"></header>
 
-    <th:block th:each="event : ${events}">
+<table class="table table-striped">
+    <thread>
         <tr>
-            <td th:text="${event.key}"></td>
-            <td th:text="${event.value}"></td>
-            <td><div th:replace="fragments :: address"></div></td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Contact Email</th>
+            <th>Type</th>
+            <th>Edit</th>
         </tr>
-    </th:block>
+    </thread>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.name}"></td>
+        <td th:text="${event.description}"></td>
+        <td th:text="${event.contactEmail}"></td>
+        <td th:text="${event.type}"></td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+        </td>
+    </tr>
 </table>
+
+<p th:unless="${events} and ${events.size()}">No events!</p>
 
 </body>
 </html>

@@ -1,5 +1,8 @@
-table{
-    margin-left:auto;
-    margin-right:auto;
+body{
+    font-size:18px;
+    color:purple;
 }
 
+.error{
+    color:red;
+}
