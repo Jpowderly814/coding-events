@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Chris Bay
@@ -17,9 +19,9 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
-    private static List<String> events = new ArrayList<>();
+    //private static List<String> events = new ArrayList<>();
 
-    @GetMapping
+/*    @GetMapping
     public String displayAllEvents(Model model) {
         model.addAttribute("title", "All Events");
         model.addAttribute("events", events);
@@ -37,5 +39,18 @@ public class EventController {
         events.add(eventName);
         return "redirect:";
     }
+*/
+    @GetMapping
+    public String displayAllEvents(Model model){
+        Map<String, String> events = new HashMap<>();
+        events.put("Code with Pride", "LGBT Friendly Coding Meetup");
+        events.put("Strange Loop","Loops that are strange");
+        events.put("Apple WWDC","Event for people who like overpriced computers");
 
+        model.addAttribute("events", events);
+
+        return "events/index";
+
+
+    }
 }
